@@ -1,0 +1,42 @@
+<% page = MetaInspector.new('https://wanikani.com') %>
+
+<h1>Resources</h1>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <img class="card-img-top" src="<%= page.images.best %>">
+      <div class="card-body">
+        <h5 class="card-title"><%= page.best_title %></h5>
+        <p class="card-text"><%= page.best_description %></p>
+        <a href="#" class="btn btn-primary">Visit Website</a>
+      </div>
+    </div>
+  </div>
+
+  <% page = MetaInspector.new('https://www.tofugu.com/japanese/learn-hiragana/') %>
+
+  <div class="col">
+    <div class="card">
+      <img class="card-img-top" src="<%= page.images.best %>">
+      <div class="card-body">
+        <h5 class="card-title"><%= page.best_title %></h5>
+        <p class="card-text"><%= page.best_description %></p>
+        <a href="#" class="btn btn-primary">Visit Website</a>
+      </div>
+    </div>
+  </div>
+
+  <% page = MetaInspector.new('https://www3.nhk.or.jp/news/easy/') %>
+
+  <div class="col">
+    <div class="card">
+      <img class="card-img-top" src="<%= page.images.best %>">
+      <div class="card-body">
+        <h5 class="card-title"><%= page.best_title %></h5>
+        <p class="card-text"><%= page.best_description %></p>
+        <a href="#" class="btn btn-primary">Visit Website</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="card mb-3 mt-3">
+  <div class="card-header">
+    <%= render "users/user_title", user: @user %>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm">
+        <%= @user.about ||= "No about section yet :(" %>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Edit Profile', edit_user_url(@user)%>
+  </div>
+</div>
+
+<h1>Latest Posts</h1>
+
+<%= render @latest_posts %>

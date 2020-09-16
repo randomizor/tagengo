@@ -1,0 +1,24 @@
+<div class="card mt-3">
+  <div class="card-body">
+    <%= form_with model: @prompt do |f| %>
+      <div class="form-row">
+        <div class="col">
+          <%= f.select :language_id, @languages.map{|l| [l.name, l.id]}, {}, class: 'form-control' %>
+        </div>
+        <div class="col">
+          <%= f.select :level_id, @levels.map{|l| [l.name, l.id]}, {}, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-row mt-3">
+        <div class="col">
+          <%= f.text_area :prompt, placeholder: 'Prompt', class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-row mt-3">
+        <div class="col">
+          <%= f.button :submit, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

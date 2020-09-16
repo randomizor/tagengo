@@ -1,0 +1,16 @@
+<div class="card mt-3">
+  <div class="card-body">
+    <%= form_with model: @correction, url: post_corrections_url do |f| %>
+      <%= f.fields_for :segment_corrections do |c| %>
+        <div class="form-row">
+          <div class="col mb-3">
+            <%= c.text_area :entry,   value: c.object.segment.segment, class: 'form-control' %>
+            <%= c.text_area :comment, class: 'form-control', placeholder: 'Comment' %>
+            <%= c.hidden_field :segment_id %>
+          </div>
+        </div>
+      <% end %>
+      <%= f.submit 'Correct', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
