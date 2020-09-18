@@ -1,31 +1,31 @@
 <div class="card mb-3">
   <div class="card-header">
-    <%= render "users/user_title", user: post.user %>
+    <%= cell(User::Cell::Title, model.user) %>
   </div>
   <div class="card-body">
     <div class="row">
       <div class="col-sm">
-        <h4><%= link_to post.title, post, class: "post-link" %></h4>
+        <h4><%= post_link %></h4>
       </div>
       <div class="col-sm">
-        <div class="float-right"><span class="badge badge-primary"><%= post.category.name %></span></div>
+        <div class="float-right"><span class="badge badge-primary"><%= model.category.name %></span></div>
       </div>
     </div>
     <div class="row">
       <div class="col-sm">
-        <p><%= post.entry %></p>
+        <p><%= model.entry %></p>
       </div>
     </div>
     <div class="row">
         <div class="col-sm">
-          <% post.tag_list.each do |tag| %>
+          <% model.tag_list.each do |tag| %>
             <span class="badge badge-info"><%= tag %></span>
           <% end %>
         </div>
     </div>
   </div>
   <div class="card-footer">
-    <span><%= post.level.name %></span>
-    <span><%= post.language.name %></span>
+    <span><%= model.level.name %></span>
+    <span><%= model.language.name %></span>
   </div>
 </div>

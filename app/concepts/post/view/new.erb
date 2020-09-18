@@ -1,20 +1,20 @@
 <div class="card mt-3">
   <div class="card-body">
-    <%= form_with model: @post do |f| %>
+    <%= form_for form do |f| %>
       <div class="form-row">
         <div class="col-md-6">
           <%= f.text_field :title, placeholder: 'Title', class: 'form-control' %>
         </div>
         <div class="col">
-          <%= f.select :language_id, @languages.map{|l| [l.name, l.id]}, {}, class: 'form-control' %>
+          <%= f.select :language_id, language_options, {}, class: 'form-control' %>
         </div>
         <div class="col">
-          <%= f.select :category_id, @categories.map{|l| [l.name, l.id]}, {}, class: 'form-control' %>
+          <%= f.select :category_id, category_options, {}, class: 'form-control' %>
         </div>
       </div>
       <div class="form-row mt-3">
         <div class="col">
-          <%= f.text_area :entry, placeholder: @prompt&.prompt || 'Entry', class: 'form-control' %>
+          <%= f.text_area :entry, placeholder: prompt_text, class: 'form-control' %>
         </div>
       </div>
       <div class="form-row mt-3">
@@ -29,7 +29,7 @@
       </div>
       <div class="form-row mt-3">
         <div class="col">
-          <%= f.hidden_field :prompt_id, value: @prompt&.id %>
+          <%= f.hidden_field :prompt_id, value: prompt_id %>
           <%= f.button :submit, class: 'btn btn-primary' %>
         </div>
       </div>
