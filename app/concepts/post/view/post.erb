@@ -1,0 +1,31 @@
+<div class="card mb-3">
+  <div class="card-header">
+    <%= cell(User::Cell::Title, user) %>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm">
+        <h4><%= post_link %></h4>
+      </div>
+      <div class="col-sm">
+        <div class="float-right"><span class="badge badge-primary"><%= category_name %></span></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <p><%= entry %></p>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+          <% tag_list.each do |tag| %>
+            <span class="badge badge-info"><%= tag %></span>
+          <% end %>
+        </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <span><%= level_name %></span>
+    <span><%= language_name %></span>
+  </div>
+</div>

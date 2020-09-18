@@ -4,6 +4,7 @@ module Post::Contract
     property :entry
     property :category_id
     property :language_id
+    property :user_id
     property :level_id
     property :tag_list
     property :prompt_id
@@ -14,6 +15,7 @@ module Post::Contract
         required(:title).filled
         required(:entry).filled
         required(:category_id).filled
+        required(:user_id).filled
         required(:language_id).filled
         required(:level_id).filled
       end

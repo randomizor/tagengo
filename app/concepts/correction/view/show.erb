@@ -1,0 +1,16 @@
+<div class="card mb-3 mt-3">
+  <div class="card-header">
+    <%= cell(User::Cell::Title, user) %>
+  </div>
+  <div class="card-body">
+    <% segment_corrections.each do |correction| %>
+      <div class="row">
+        <div class="col-sm">
+          <%= correction.segment.segment %>
+        </div>
+      </div>
+      <%= cell(SegmentCorrection::Cell::Show, correction) %>
+    <% end %>
+  </div>
+  <div class="card-footer">Footer</div>
+</div>

@@ -1,14 +1,14 @@
-module Post::Operation
+module Correction::Operation
   class Index < Trailblazer::Operation
     step :find_model
     step :setup_presenter
 
     def find_model(ctx, **)
-      ctx[:model] = Post.all
+      ctx[:model] = Correction.all
     end
 
     def setup_presenter(ctx, **)
-      ctx[:presented] = Post::Presenter::Show.from_collection(ctx[:model])
+      ctx[:presented] = Post::Presenter::Index.from_collection(ctx[:model])
     end
   end
 end

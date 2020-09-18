@@ -1,31 +1,36 @@
-<div class="card mb-3">
-  <div class="card-header">
-    <%= cell(User::Cell::Title, model.user) %>
+<div class="mt-3">
+  <%= cell(Post::Cell::Post, model) %>
+</div>
+
+<ul class="nav nav-pills mb-3 bg-dark" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-individual-tab" data-toggle="pill" href="#pills-individual" role="tab" aria-controls="pills-individual" aria-selected="true">Individual Corrections</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-grouped-tab" data-toggle="pill" href="#pills-grouped" role="tab" aria-controls="pills-grouped" aria-selected="true">Grouped Corrections</a>
+  </li>
+</ul>
+
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-individual" role="tabpanel" aria-labelledby="pills-individual-tab">
+    <% if corrections.any? %>
+      <%= cell(Correction::Cell::Show, collection: corrections) %>
+    <% end %>
   </div>
-  <div class="card-body">
-    <div class="row">
-      <div class="col-sm">
-        <h4><%= post_link %></h4>
-      </div>
-      <div class="col-sm">
-        <div class="float-right"><span class="badge badge-primary"><%= model.category.name %></span></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm">
-        <p><%= model.entry %></p>
-      </div>
-    </div>
-    <div class="row">
-        <div class="col-sm">
-          <% model.tag_list.each do |tag| %>
-            <span class="badge badge-info"><%= tag %></span>
-          <% end %>
+
+  <div class="tab-pane fade" id="pills-grouped" role="tabpanel" aria-labelledby="pills-individual-tab">
+    <% segments.each do |segment| %>
+      <div class="card mb-3 mt-3">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm">
+              <%= segment.segment %>
+            </div>
+          </div>
+          <%= cell(SegmentCorrection::Cell::Show, collection: segment.segment_corrections) %>
         </div>
-    </div>
-  </div>
-  <div class="card-footer">
-    <span><%= model.level.name %></span>
-    <span><%= model.language.name %></span>
+        <div class="card-footer">Footer</div>
+      </div>
+    <% end %>
   </div>
 </div>

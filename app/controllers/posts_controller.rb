@@ -3,25 +3,25 @@ class PostsController < ApplicationController
 
   def index
     res   = Post::Operation::Index.()
-    render cell(Post::Cell::Index, res[:presenter])
+    render cell(Post::Cell::Index, res[:presented])
   end
 
   def create
     user_level = current_user.user_languages.where(language_id: params[:post][:language_id]).first.level_id
     res = Post::Operation::Create.(params: params[:post].merge(user_id: current_user.id, level_id: user_level))
-    redirect_to post_path res[:presenter].model
+    redirect_to post_path res[:presented].model
   end
 
   def show
-    @post = Post.find(params[:id])
-  end
+    post = Post::Operation::Show.(params: params)[:presented]
 
-  def new
-    Render
-  end
+    segments     = post.model.segments
+    corrections  = post.model.corrections
 
-  def update
-
+    render cell(Post::Cell::Show, post,
+                corrections: corrections,
+                segments:    segments
+            )
   end
 
   def new

@@ -12,12 +12,4 @@ class Post < ApplicationRecord
   accepts_nested_attributes_for :corrections
 
   acts_as_taggable_on :tags
-
-  after_create do |post|
-    ps = PragmaticSegmenter::Segmenter.new(text: post.entry, language: post.language.code)
-
-    ps.segment.each do |segment|
-      post.segments.create(segment: segment)
-    end
-  end
 end
