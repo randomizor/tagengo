@@ -1,8 +1,8 @@
-module UserLanguage::Contract
+module UserLearningLanguage::Contract
   class Update < Reform::Form
     property :language_id
-    property :level_id
     property :user_id
+    property :level_id
 
     validation name: :default do
       params do
@@ -12,6 +12,6 @@ module UserLanguage::Contract
       end
     end
 
-    model :user_language
+    model :user_learning_language
   end
 end

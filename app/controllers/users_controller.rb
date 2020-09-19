@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    res = User::Operation::Update.(params: params[:user].merge(id: current_user.id))
+    res = User::Operation::Update.(params: user_params.merge(id: current_user.id))
     redirect_to user_path res[:presented].model
   end
 
@@ -36,15 +36,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user)
-          .permit(
-            :about,
-            native_languages_attributes: language_params,
-            learning_languages_attributes: language_params
-          )
-  end
-
-  def language_params
-    [:id, :user_id, :language_id, :level_id]
+    params.require(:user).permit!
   end
 end

@@ -10,11 +10,11 @@ module User::Presenter
     property :username
     property :about
 
-    collection :languages_native,   twin: Language::Presenter::Show
-    collection :languages_learning, twin: Language::Presenter::Show
+    collection :native_languages,   twin: Language::Presenter::Show
+    collection :learning_languages, twin: Language::Presenter::Show
 
-    collection :native_languages,   twin: UserLanguage::Presenter::Show
-    collection :learning_languages, twin: UserLanguage::Presenter::Show
+    collection :user_native_languages,   twin: UserNativeLanguage::Presenter::Show
+    collection :user_learning_languages, twin: UserLearningLanguage::Presenter::Show
 
     def to_key
       [:user]

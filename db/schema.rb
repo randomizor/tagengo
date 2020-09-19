@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_15_143649) do
+ActiveRecord::Schema.define(version: 2020_09_15_134413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -147,16 +147,26 @@ ActiveRecord::Schema.define(version: 2020_09_15_143649) do
     t.index ["user_id"], name: "index_user_badges_on_user_id"
   end
 
-  create_table "user_languages", force: :cascade do |t|
+  create_table "user_learning_languages", force: :cascade do |t|
     t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.bigint "user_id", null: false
     t.bigint "language_id", null: false
     t.bigint "level_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["language_id"], name: "index_user_languages_on_language_id"
-    t.index ["level_id"], name: "index_user_languages_on_level_id"
-    t.index ["user_id"], name: "index_user_languages_on_user_id"
+    t.index ["language_id"], name: "index_user_learning_languages_on_language_id"
+    t.index ["level_id"], name: "index_user_learning_languages_on_level_id"
+    t.index ["user_id"], name: "index_user_learning_languages_on_user_id"
+  end
+
+  create_table "user_native_languages", force: :cascade do |t|
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
+    t.bigint "user_id", null: false
+    t.bigint "language_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["language_id"], name: "index_user_native_languages_on_language_id"
+    t.index ["user_id"], name: "index_user_native_languages_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -172,9 +182,9 @@ ActiveRecord::Schema.define(version: 2020_09_15_143649) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.text "about"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "about"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -195,7 +205,9 @@ ActiveRecord::Schema.define(version: 2020_09_15_143649) do
   add_foreign_key "taggings", "tags"
   add_foreign_key "user_badges", "badges"
   add_foreign_key "user_badges", "users"
-  add_foreign_key "user_languages", "languages"
-  add_foreign_key "user_languages", "levels"
-  add_foreign_key "user_languages", "users"
+  add_foreign_key "user_learning_languages", "languages"
+  add_foreign_key "user_learning_languages", "levels"
+  add_foreign_key "user_learning_languages", "users"
+  add_foreign_key "user_native_languages", "languages"
+  add_foreign_key "user_native_languages", "users"
 end

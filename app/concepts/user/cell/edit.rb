@@ -6,7 +6,9 @@ module User::Cell
     property :languages
 
     def form
-      ::User::Contract::Update.new(model)
+      @form = ::User::Contract::Update.new(model)
+      @form.prepopulate!
+      @form
     end
 
     private
@@ -22,7 +24,7 @@ module User::Cell
     end
 
     def level_options
-      options[:languages].map{|l| [l.name, l.id]}
+      options[:levels].map{|l| [l.name, l.id]}
     end
   end
 end

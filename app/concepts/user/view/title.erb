@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="row">
-          <% model.languages_native.each do |language| %>
+          <% model.native_languages.each do |language| %>
             <div class="col-sm-1">
               <span><%= language.code.upcase %></span>
               <div class="progress">
@@ -20,7 +20,7 @@
             </div>
           <% end %>
 
-          <% model.languages_learning.each do |language| %>
+          <% model.learning_languages.each do |language| %>
             <div class="col-sm-1">
               <span><%= language.code.upcase %></span>
               <div class="progress">

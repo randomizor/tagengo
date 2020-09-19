@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    user_level = current_user.user_languages.where(language_id: params[:post][:language_id]).first.level_id
+    user_level = current_user.user_learning_languages.find_by(language_id: params[:post][:language_id]).level_id
     res = Post::Operation::Create.(params: params[:post].merge(user_id: current_user.id, level_id: user_level))
     redirect_to post_path res[:presented].model
   end
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 
   def new
     render cell(Post::Cell::New, OpenStruct.new(
-        languages:  current_user.languages_learning,
+        languages:  current_user.learning_languages,
         categories: Category.all,
         prompt:     Prompt.order("RANDOM()").first
       )

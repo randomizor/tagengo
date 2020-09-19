@@ -1,4 +1,4 @@
-module UserLanguage::Presenter
+module UserNativeLanguage::Presenter
   class Show < Disposable::Twin
     require 'disposable/twin/persisted'
     feature Disposable::Twin::Persisted
@@ -8,7 +8,6 @@ module UserLanguage::Presenter
     property :id
     property :uuid
     property :language_id
-    property :level_id
     property :user_id
   end
 end
