@@ -4,7 +4,7 @@ module Post::Operation
     step :setup_presenter
 
     def find_model(ctx, **)
-      ctx[:model] = Post.all
+      ctx[:model] = Post.list(ctx[:params] || {})
     end
 
     def setup_presenter(ctx, **)

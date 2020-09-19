@@ -7,7 +7,7 @@ module Post::Cell
     property :categories
 
     def form
-      Post::Contract::Create.new(Post.new)
+      ::Post::Contract::Create.new(::Post.new)
     end
 
     private

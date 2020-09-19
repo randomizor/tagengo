@@ -1,6 +1,6 @@
 <div class="card mt-3">
   <div class="card-body">
-    <%= form_with model: @user do |f| %>
+    <%= form_for form do |f| %>
       <div class="form-row mb-2">
         <div class="col">
           <%= f.text_area :about, placeholder: 'Write something about yourself', class: 'form-control' %>
@@ -8,19 +8,19 @@
       </div>
       <div class="form-row">
           <h4>Native Languages</h4>
-          <%= f.fields_for :native_languages do |u| %>
+          <%= my_fields_for f, :native_languages do |u| %>
             <div class="col-md-12 mb-2">
-              <%= u.select :language_id, Language.all.map{|l| [l.name, l.id]}, { prompt: 'Select Language'}, class: 'form-control' %>
+              <%= u.select :language_id, language_options, { prompt: 'Select Language'}, class: 'form-control' %>
               <%= u.hidden_field :level_id %>
             </div>
           <% end %>
       </div>
       <div class="form-row mt-3">
         <h4>Learning Languages</h4>
-        <%= f.fields_for :learning_languages do |u| %>
+        <%= my_fields_for f, :learning_languages do |u| %>
          <div class="col-md-12 mb-2">
-           <%= u.select :language_id, Language.all.map{|l| [l.name, l.id]}, { prompt: 'Select Language' }, class: "form-control" %>
-            <%= u.select :level_id, Level.all.map{|l| [l.name, l.id]}, { prompt: 'Select Level' }, class: "form-control" %>
+           <%= u.select :language_id, language_options, { prompt: 'Select Language' }, class: "form-control" %>
+            <%= u.select :level_id, level_options, { prompt: 'Select Level' }, class: "form-control" %>
           </div>
         <% end %>
       </div>

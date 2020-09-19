@@ -1,28 +1,39 @@
 class UsersController < ApplicationController
+  before_action :get_user, only: [:show, :edit]
+
   def show
-    @user = User.find(params[:id])
-    @post_count = @user.posts.count
-    @prompts_count = @user.prompts.count
+    @latest_posts = Post::Operation::Index.(
+      params: {
+        limit: 5,
+        user_id: current_user.id
+      }
+    )[:presented]
 
-    prompts = @user.prompts.select(:id).map(&:id)
-    @posts_using_prompts_counts = Post.where(prompt_id: prompts).count
-
-    @latest_posts = @user.posts.order(created_at: :desc).limit(5)
+    render cell(User::Cell::Show, @user, latest_posts: @latest_posts)
   end
 
   def edit
-    @user = User.find(params[:id])
-    (2 - @user.native_languages.count).times { @user.native_languages.build }
-    (2 - @user.learning_languages.count).times { @user.learning_languages.build }
+    render cell(User::Cell::Edit,
+      current_user,
+      languages: Language.all,
+      levels: Level.all
+    )
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to @user
+    res = User::Operation::Update.(params: params[:user].merge(id: current_user.id))
+    redirect_to user_path res[:presented].model
   end
 
   private
+
+  def get_user
+    @user = User::Operation::Show.(
+      params: {
+        id: params[:id] || current_user.id
+      }
+    )[:presented]
+  end
 
   def user_params
     params.require(:user)
