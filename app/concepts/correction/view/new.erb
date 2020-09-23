@@ -1,0 +1,14 @@
+<div class="card mt-3">
+  <div class="card-body">
+    <%= form_for form, url: post_corrections_url do |f| %>
+      <% segments.each.with_index do |segment, index| %>
+          <% f.fields_for :segment_corrections, SegmentCorrection.new do |sc| %>
+            <%= sc.text_area :entry,   value: segment.segment, class: 'form-control' %>
+            <%= sc.text_area :comment, class: 'form-control' %>
+            <%= sc.hidden_field :segment_id, value: segment.id, class: 'form-control' %>
+          <% end %>
+      <% end %>
+      <%= f.submit 'Correct', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

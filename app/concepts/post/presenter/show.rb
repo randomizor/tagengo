@@ -23,5 +23,7 @@ module Post::Presenter
       property :uuid
       property :name
     end
+
+    collection :segments, twin: ::Segment::Presenter::Show
   end
 end

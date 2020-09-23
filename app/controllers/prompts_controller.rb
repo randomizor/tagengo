@@ -7,20 +7,15 @@ class PromptsController < ApplicationController
   end
 
   def create
-    res = Prompt::Operation::Create.(params: params[:prompt].merge(user_id: current_user.id))
+    res = Prompt::Operation::Create.(
+      params: params[:prompt].merge(user_id: current_user.id)
+    )
+
     redirect_to prompts_path
   end
 
   def show
     @prompt = Prompt.find(params[:id])
-  end
-
-  def update
-
-  end
-
-  def edit
-
   end
 
   def new
@@ -29,16 +24,5 @@ class PromptsController < ApplicationController
         levels:     Level.all
       )
     )
-  end
-
-  def destroy
-
-  end
-
-  private
-
-  def prompt_params
-    params.require(:prompt)
-          .permit(:prompt, :user_id, :language_id, :level_id)
   end
 end

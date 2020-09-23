@@ -7,8 +7,17 @@ class PostsController < ApplicationController
   end
 
   def create
-    user_level = current_user.user_learning_languages.find_by(language_id: params[:post][:language_id]).level_id
-    res = Post::Operation::Create.(params: params[:post].merge(user_id: current_user.id, level_id: user_level))
+    user_level = current_user.user_learning_languages.find_by(
+      language_id: params[:post][:language_id]
+    ).level_id
+
+    res = Post::Operation::Create.(
+      params: params[:post].merge(
+        user_id: current_user.id,
+        level_id: user_level
+      )
+    )
+
     redirect_to post_path res[:presented].model
   end
 
@@ -31,9 +40,5 @@ class PostsController < ApplicationController
         prompt:     Prompt.order("RANDOM()").first
       )
     )
-  end
-
-  def destroy
-
   end
 end
