@@ -1,3 +1,25 @@
-<h1>Prompts</h1>
-<%= cell(Prompt::Cell::Prompt, collection: model) %>
-<%= new_prompt_link %>
+<h2>Prompts</h2>
+
+<div class="row">
+  <div class="col-md-9">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="pills-individual-tab" data-toggle="pill" href="#pills-individual" role="tab" aria-controls="pills-individual" aria-selected="true">Recent</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-grouped-tab" data-toggle="pill" href="#pills-grouped" role="tab" aria-controls="pills-grouped" aria-selected="true">Popular</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-grouped-tab" data-toggle="pill" href="#pills-grouped" role="tab" aria-controls="pills-grouped" aria-selected="true">My Prompts</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-3">
+      <%= new_prompt_link %>
+  </div>
+</div>
+
+<div class='prompts'>
+  <%= cell(Prompt::Cell::Prompt, collection: model) %>
+</div>
+

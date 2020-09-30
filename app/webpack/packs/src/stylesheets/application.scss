@@ -1,11 +1,12 @@
 body{
-	background: var(--gray);
+		background: #212529;
+		color: #888F96;
 }
 
 .post-link{
-	color: $black;
+	color: #F1F2F2;
 	&:hover,&:active{
-		color: $black;
+		color: #F1F2F2;
 	}
 }
 
@@ -35,6 +36,65 @@ del{
 	}
 }
 
+.card-body, .card, .card-header, .card-footer{
+	background: #2A2E32;
+}
+
+.card{
+	border-radius: 1.25rem;
+	border: none;
+	padding: 10px;
+}
+
+.card-footer:last-child{
+	border-radius: 0 0 calc(1.25rem - 1px) calc(1.25rem - 1px);
+}
+
+.navbar{
+	background: #212529;
+}
+
+.navbar-dark{
+	.navbar-nav{
+		.nav-link{
+			&.active{
+				color: #FD413C;
+			}
+		}
+	}
+}
+
+h1, h2{
+	color: #F1F2F2;
+}
+
+.nav-pills .nav-link{
+	color: #888F96;
+	border-radius: 0;
+}
+
+.nav-pills .nav-link.active, .nav-pills .nav-link:hover,  .nav-pills .show > .nav-link{
+	background: none;
+	color: #F1F2F2;
+	border-bottom: 2px solid #E33E3A;
+}
+
+.card-header strong{
+	color: #F1F2F2;
+}
+
+.card-header span{
+	font-size: 10pt;
+}
+
 .progress{
-	height: 8px;
+	height: 6px;
+}
+
+.posts, .prompts{
+	padding-top: 20px;
+}
+
+#content{
+	padding-top: 20px;
 }
