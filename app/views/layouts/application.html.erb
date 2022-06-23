@@ -34,7 +34,7 @@
         <div class="col-sm-3 bg-light-grey">
           <div class="d-flex flex-column h-100">
             <div class="card-header">
-              <%= cell(User::Cell::Title, current_user) %>
+              <%= cell(User::Cell::Title, current_user) if signed_in? %>
             </div>
           </div>
         </div>
